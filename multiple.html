@@ -1,0 +1,57 @@
+
+<html>
+ <head></head>
+
+<body>
+
+<script>
+	(function () {
+		var req_api = 'http://s.f1.impact-ad.jp/jsc/fns.json?n=2696&c=34/2&s=3&d=93&w=1&h=1&&cs=1&r=1&ct=segment:';
+		var served_array = [];
+		var tag_num = 4;
+
+		var check_adid = function(id) {
+			if (served_array.indexOf(id) == -1) {
+				return false;
+			}else{
+				return true;
+			}
+		};
+
+		var tracking = function(url) {
+			console.log(url);
+		};
+		var generate_ad = function(content) {
+			console.log(content);
+		};
+
+		var reqest_ad = function(count) {
+			var seg = served_array.join(',');
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+			    if (xhttp.readyState == 4 && xhttp.status == 200) {
+						var json = JSON.parse(xhttp.responseText);
+						if (json != ""){	//広告有無チェック
+							var adid = json.creativeId;
+							if (!(check_adid(adid))){	//重複チェック
+								generate_ad(json.adContent.html.html);	//表示処理
+								tracking(json.trackingData.impressionUrl); //imp実績送信？
+								served_array.push(adid);	//配信済み広告登録
+								console.log(served_array);
+							}
+						}
+						if(count < tag_num){reqest_ad(count+1)}
+			    }
+			};
+
+			xhttp.open("GET", req_api+seg, true);
+			xhttp.send();
+		};
+
+		reqest_ad(1);
+	})();
+</script>
+
+</body>
+
+<html>

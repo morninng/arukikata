@@ -1,0 +1,89 @@
+<html>
+
+<head></head>
+<body>
+
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+
+<script>
+
+(function () {
+
+	var channel_array = [11,135,136,137];
+	var network_id = "3511";
+	var sid = "1";
+	var width = "430";
+	var height = "25";
+	var sz = "36";
+
+	var ordered_array = [];
+	do {
+		var selected_index = Math.floor( Math.random() * channel_array.length );
+		ordered_array.push(channel_array[selected_index]);
+		channel_array.splice(selected_index,1);
+	} while (channel_array.length > 0)
+
+	for(var i=0; i< ordered_array.length; i++){
+
+		var channel_id = ordered_array[i];
+		document.write("<scr");
+		document.write('ipt>');
+		document.write("var zflag_nid='" + network_id + "';");
+		document.write("var zflag_cid='" + channel_id + "';");
+		document.write("var zflag_sid='" + sid + "';");
+		document.write("var zflag_width='" + width + "';");
+		document.write("var zflag_height='" + height + "';");
+		document.write("var zflag_sz='" + sz + "';");
+		document.write("var zflag_ct='order:" + String(i) + "';");
+		document.write("</scr");
+		document.write('ipt>');
+
+		document.write('<scr');
+		document.write('ipt src="https://s.f1.impact-ad.jp/jsc/sxp2/fo.js"></scr');
+		document.write('ipt>');
+	}
+})();
+
+
+</script>
+
+
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+aAAAA BBBB CCCC 
+
+
+
+</body>
+</html>
