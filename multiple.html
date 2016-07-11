@@ -16,10 +16,17 @@ aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb 
 <span class="ad_root"></span>
 
 <script>
+
 	(function () {
 
+		/*each tag setting*/
+		var tag_number = 2;
+		var req_url_base = 'http://xp1.zedo.com/jsc/fns.json?n=2696&c=34/2&s=3&d=93&w=1&h=1&cs=1&r=1';
+		/******************/
+
 		var pre_adid_array = [];
-		var tag_num = 6;
+		var tag_num = tag_number-1
+
 
 		var is_ad_exist = function(id) {
 			for(var i=0; i< pre_adid_array.length; i++){
@@ -30,8 +37,10 @@ aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb 
 			return true;
 		};
 
-		var tracking = function(url) {
-			//console.log(url);
+		var tracking = function(req_url) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", req_url, true);
+			xhr.send();
 		};
 
 		var generate_ad = function(content, count) {
@@ -42,7 +51,6 @@ aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb 
 			var content_array2 = content_fixed.split("\\n');");
 			var content_fixed2 = content_array2.join("");
 
-
 			var ad_root_element = document.getElementsByClassName("ad_root")[count];
 			if(ad_root_element){
 				ad_root_element.innerHTML = content_fixed2;
@@ -51,7 +59,7 @@ aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb 
 
 		var get_request_url = function(){
 
-			var req_url = 'http://s.f1.impact-ad.jp/jsc/fns.json?n=2696&c=34/2&s=3&d=93&w=1&h=1&cs=1&r=1';
+			var req_url = req_url_base;
 
 			for(var i=0; i<pre_adid_array.length; i++ ){
 				if(i==0){
@@ -61,6 +69,7 @@ aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb 
 				}
 			}
 			return req_url;
+
 		}
 
 
@@ -76,13 +85,10 @@ aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb aaaaaaaaaaa bbb 
 			    if (xhr.readyState == 4 && xhr.status == 200) {
 			    	try{
 			    		var response_text = xhr.responseText;
-			    		//response_text = "aaa";
-			    		//response_text = "{}";
 						var res_json = JSON.parse(response_text);
 						if(res_json && res_json.creativeId){
 							var adid = res_json.creativeId;
-							//if ((is_ad_exist(adid))){
-							if (true){
+							if ((is_ad_exist(adid))){
 								pre_adid_array.push(adid);
 								if(count < tag_num){
 									reqest_ad(count+1);

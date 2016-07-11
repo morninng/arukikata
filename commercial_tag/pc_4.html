@@ -1,0 +1,86 @@
+
+
+<span class="ad_root"></span>
+<span class="ad_root"></span>
+<span class="ad_root"></span>
+<span class="ad_root"></span>
+<script>
+	(function () {
+		/*each tag setting*/
+		var tag_number = 4;
+		var req_url_base = "https://saxp.zedo.com/jsc/fns.json?n=3511&c=175&s=1&d=36&w=430&h=25&cs=1&r=1";
+		/******************/
+		var pre_adid_array = [];
+		var tag_num = tag_number-1
+		var is_ad_exist = function(id) {
+			for(var i=0; i< pre_adid_array.length; i++){
+				if(pre_adid_array[i] == id){
+					return false
+				}
+			}
+			return true;
+		};
+
+		var tracking = function(req_url) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", req_url, true);
+			xhr.send();
+		};
+		var generate_ad = function(content, count) {
+
+			var content_html = content.html;
+			var content_array = content_html.split("document.write('");
+			var content_fixed = content_array.join("");
+			var content_array2 = content_fixed.split("\\n');");
+			var content_fixed2 = content_array2.join("");
+
+			var ad_root_element = document.getElementsByClassName("ad_root")[count];
+			if(ad_root_element){
+				ad_root_element.innerHTML = content_fixed2;
+			}
+		};
+
+		var get_request_url = function(){
+
+			var req_url = req_url_base;
+			for(var i=0; i<pre_adid_array.length; i++ ){
+				if(i==0){
+					req_url = req_url + "&ct=pre_delive:" + pre_adid_array[i];
+				}else{
+					req_url = req_url + "," + pre_adid_array[i];
+				}
+			}
+			return req_url;
+		}
+		var reqest_ad = function(count) {
+			var xhr = new XMLHttpRequest();
+			var req_url = get_request_url();
+			console.log(req_url);
+			xhr.open("GET", req_url, true);
+
+			xhr.onreadystatechange = function() {
+			    if (xhr.readyState == 4 && xhr.status == 200) {
+			    	try{
+			    		var response_text = xhr.responseText;
+						var res_json = JSON.parse(response_text);
+						if(res_json && res_json.creativeId){
+							var adid = res_json.creativeId;
+							if ((is_ad_exist(adid))){
+								pre_adid_array.push(adid);
+								if(count < tag_num){
+									reqest_ad(count+1);
+								}
+								generate_ad(res_json.adContent.html, count);
+								tracking(res_json.trackingData.impressionUrl);
+							}
+						}
+					} catch(e){
+						console.log(e);
+					}
+			    }
+			};
+			xhr.send();
+		};
+		reqest_ad(0);
+	})();
+</script>

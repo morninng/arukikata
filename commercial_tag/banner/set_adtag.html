@@ -1,0 +1,61 @@
+<html>
+<head></head>
+
+<body>
+
+
+<span id="aaa"></span>
+
+<script>
+
+ var adtag_text = '<script type="text/javascript" src="http://y.one.impact-ad.jp/imp?p=9164&w=300&h=250&t=j"><\/script><noscript><iframe scrolling="no" height="250" frameborder="0" width="300" allowtransparency="true" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" src="http://y.one.impact-ad.jp/imp?p=9164&h=250&w=300"></iframe></noscript>';
+
+
+
+	var adtag_splited_arr = adtag_text.split("<script");
+	console.log(adtag_splited_arr);
+ 	var script_inner_array = [];
+ 	var script_outer_array = [];
+ 	var script_after_array = [];
+
+ 	aaa_span = document.getElementById("aaa");
+
+ 	console.log("-----------");
+
+	for(var i=1; i<adtag_splited_arr.length; i++){
+		var position = adtag_splited_arr[i].indexOf("script>");
+		if( position != -1 ){
+	 		script_inner_array.push( adtag_splited_arr[i].slice(0, position) );
+	 		script_outer_array.push( adtag_splited_arr[i].slice(position) );
+	 		script_after_array[i-1] = script_outer_array[i-1].slice(7)
+	 		console.log(script_inner_array[i-1]);
+	 		console.log(script_outer_array[i-1]);
+	 		console.log(script_after_array[i-1]);
+
+	 		var src_position = script_inner_array[i-1].indexOf("src");
+	 		if(src_position != -1){
+	 			var after_src = script_inner_array[i-1].slice(src_position);
+	 			var src_data_arr = after_src.split('"');
+	 			var src = src_data_arr[1];
+	 			console.log(src);
+	 			if(src){
+	 				var src_element = document.createElement("script");
+	 				src_element.src = src;
+	 				src_element.type = "text/javascript";
+	 				aaa_span.insertBefore(src_element, null);
+	 			}
+	 		}
+
+
+		}
+	}
+
+
+
+
+	//console.log(script_inner_array);
+	//console.log(script_outer_array);
+
+</script>
+</body>
+</html>
