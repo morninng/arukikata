@@ -6,10 +6,15 @@
 	(function () {
 		/*each tag setting*/
 		var tag_number = 2;
-		var req_url_base = "https://saxp.zedo.com/jsc/fns.json?n=3511&c=174/10&s=1&d=36&w=430&h=25&cs=1&r=1";
+		var req_url_base = "https://saxp.zedo.com/jsc/fns.json?n=2117&c=804&d=9&w=300&h=250&cs=1&r=1";
+		var width = 300;
+		var height = 250;
+		var ext_html_src = "./dummy_iframe_parent.html";
 		/******************/
+
 		var pre_adid_array = [];
-		var tag_num = tag_number-1;
+		var tag_num = tag_number-1
+
 		var is_ad_exist = function(id) {
 			for(var i=0; i< pre_adid_array.length; i++){
 				if(pre_adid_array[i] == id){
@@ -35,14 +40,27 @@
 
 			var ad_root_element = document.getElementsByClassName("ad_root")[count];
 			if(ad_root_element){
-				ad_root_element.innerHTML = content_fixed2;
+				var iframe = document.createElement("iframe");
+				iframe.src = ext_html_src;
+				iframe.style.width = width + "px";
+				iframe.style.height = height + "px";
+				iframe.style.margin = "0px";
+				iframe.style.borderWidth = "0px";
+				iframe.style.padding = "0px";
+				iframe.scrolling = "no";
+				iframe.frameBorder = "0";
+				iframe.allowTransparency = "true";
+				iframe.frame_width = width;
+				iframe.frame_height = height;
+				window.EAS_src = content_fixed2;
+				//iframe.EAS_src = content_fixed2;
+				ad_root_element.appendChild(iframe);
 			}
 		};
 
 		var get_request_url = function(){
 
 			var req_url = req_url_base;
-
 			for(var i=0; i<pre_adid_array.length; i++ ){
 				if(i==0){
 					req_url = req_url + "&ct=pre_delive:" + pre_adid_array[i];
@@ -62,9 +80,6 @@
 			var req_url = get_request_url();
 			console.log(req_url);
 			xhr.open("GET", req_url, true);
-			
-			xhr.withCredentials = true;
-			xhr.setRequestHeader("Cookie","key=222");
 
 			xhr.onreadystatechange = function() {
 			    if (xhr.readyState == 4 && xhr.status == 200) {

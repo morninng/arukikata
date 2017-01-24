@@ -1,0 +1,32 @@
+チャネル:  サイドローテーションバナー2枠用1枠目
+媒体社: ダイヤモンド・ビッグ社
+広告サイズ: サイドローテーションバナー - 200 x 200
+
+<!-- Javascript tag: -->
+<!-- begin ZEDO for channel:  サイドローテーションバナー2枠用1枠目 , publisher: ダイヤモンド・ビッグ社 , Ad Dimension: サイドローテーションバナー - 200 x 200 -->
+<script language="JavaScript">
+var zflag_nid="3511"; var zflag_cid="180"; var zflag_sid="1"; var zflag_width="200"; var zflag_height="200"; var zflag_sz="35"; 
+</script>
+<script language="JavaScript" src="https://s.f1.impact-ad.jp/jsc/sxp2/fo.js"></script>
+<!-- end ZEDO for channel:  サイドローテーションバナー2枠用1枠目 , publisher: ダイヤモンド・ビッグ社 , Ad Dimension: サイドローテーションバナー - 200 x 200 -->
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+チャネル:  サイドローテーションバナー2枠用2枠目
+媒体社: ダイヤモンド・ビッグ社
+広告サイズ: サイドローテーションバナー - 200 x 200
+
+<!-- Javascript tag: -->
+<!-- begin ZEDO for channel:  サイドローテーションバナー2枠用2枠目 , publisher: ダイヤモンド・ビッグ社 , Ad Dimension: サイドローテーションバナー - 200 x 200 -->
+<script language="JavaScript">
+var zflag_nid="3511"; var zflag_cid="179"; var zflag_sid="1"; var zflag_width="200"; var zflag_height="200"; var zflag_sz="35"; 
+</script>
+<script language="JavaScript" src="https://s.f1.impact-ad.jp/jsc/sxp2/fo.js"></script>
+<!-- end ZEDO for channel:  サイドローテーションバナー2枠用2枠目 , publisher: ダイヤモンド・ビッグ社 , Ad Dimension: サイドローテーションバナー - 200 x 200 -->
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+

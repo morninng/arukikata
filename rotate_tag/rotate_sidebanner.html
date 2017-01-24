@@ -1,0 +1,20 @@
+
+<script>
+(function () {
+
+	var adtag_str_1 = '<script language="JavaScript">var zflag_nid="2117"; var zflag_cid="810"; var zflag_sid="0"; var zflag_width="300"; var zflag_height="250"; var zflag_sz="9"; var zflag_charset="utf-8"; var zflag_ref="[INSERT_REFERER_URL]"; </scr' + 'ipt><script language="JavaScript" src="http://s.f1.impact-ad.jp/jsc/xp2/fo.js"></scr' + 'ipt>'
+
+	var adtag_str_2 = '<script language="JavaScript">var zflag_nid="2117"; var zflag_cid="809"; var zflag_sid="0"; var zflag_width="300"; var zflag_height="250"; var zflag_sz="9"; var zflag_charset="utf-8"; var zflag_ref="[INSERT_REFERER_URL]"; </scr' + 'ipt><script language="JavaScript" src="http://s.f1.impact-ad.jp/jsc/xp2/fo.js"></scr' + 'ipt>';
+
+	var order = Math.floor( Math.random()*2 );
+	if(order == 1){
+		document.write(adtag_str_1);
+		document.write(adtag_str_2);
+	} else{
+		document.write(adtag_str_2);
+		document.write(adtag_str_1);
+
+	}
+
+})();
+</script>

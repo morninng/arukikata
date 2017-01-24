@@ -1,0 +1,21 @@
+
+<script>
+(function () {
+
+
+	var adtag_str_1 = '<div class="ad_siderotation_base ad_siderotation_lateral"><scr' + 'ipt language="JavaScript">var zflag_nid="3511"; var zflag_cid="180"; var zflag_sid="1"; var zflag_width="200"; var zflag_height="200"; var zflag_sz="35"; </scr' + 'ipt><script language="JavaScript" src="http://s.f1.impact-ad.jp/jsc/xp2/fo.js"></scr' + 'ipt></div>';
+
+	var adtag_str_2 = '<div class="ad_siderotation_base ad_siderotation_lateral"><scr' + 'ipt  language="JavaScript">var zflag_nid="3511"; var zflag_cid="179"; var zflag_sid="1"; var zflag_width="200"; var zflag_height="200"; var zflag_sz="35";  </scr' + 'ipt><script language="JavaScript" src="http://s.f1.impact-ad.jp/jsc/xp2/fo.js"></scr' + 'ipt></div>';
+
+	var order = Math.floor( Math.random()*2 );
+	if(order == 1){
+		document.write(adtag_str_1);
+		document.write(adtag_str_2);
+	} else{
+		document.write(adtag_str_2);
+		document.write(adtag_str_1);
+
+	}
+
+})();
+</script>
