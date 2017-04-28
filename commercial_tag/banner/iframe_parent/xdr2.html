@@ -1,0 +1,30 @@
+<script>
+
+if(window.XDomainRequest){
+  var xdr = new XDomainRequest();
+
+  xdr.open("get", "https://saxp.zedo.com/jsc/fns.json?n=2117&c=804&d=9&w=300&h=250&cs=1&r=1");
+
+  xdr.onprogress = function () {
+    //Progress
+    console.log("onprogress")
+  };
+
+  xdr.ontimeout = function () { 
+    console.log("timeout");
+  };
+
+  xdr.onerror = function () { 
+    console.log("onerror");
+  };
+
+  xdr.onload = function() {
+    console.log(xdr.responseText);
+  }
+
+  setTimeout(function () {
+    xdr.send();
+  }, 0);
+}
+
+</script>

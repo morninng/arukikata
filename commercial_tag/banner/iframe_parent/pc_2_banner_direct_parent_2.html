@@ -3,6 +3,7 @@
 <span class="ad_root"></span>
 
 <script>
+
 	(function () {
 		/*each tag setting*/
 		var tag_number = 2;
@@ -72,8 +73,8 @@
 
 		}
 
-
-		var reqest_ad = function(count) {
+/*
+		var reqest_ad_xhr = function(count) {
 
 
 			var xhr = new XMLHttpRequest();
@@ -105,7 +106,64 @@
 			};
 			xhr.send();
 		};
+*/
 
-		reqest_ad(0);
+
+		var reqest_ad_xdr = function(count) {
+			console.log("start reqest_ad_xdr");
+			var ie_xdr = new XDomainRequest();
+			var req_url = get_request_url();
+			console.log("url", req_url);
+			ie_xdr.open("get", req_url);
+
+
+
+			ie_xdr.onprogress = function () {
+				//Progress
+				console.log("onprogress")
+			};
+
+			ie_xdr.ontimeout = function () { 
+				console.log("timeout");
+			};
+
+			ie_xdr.onerror = function () { 
+				console.log("onerror");
+			};
+
+			ie_xdr.onload = function() {
+				console.log("onloaded called");
+				try{
+					if(!ie_xdr.responseText){
+						console.log("response does not exist");
+						return;
+					}
+					console.log("ie_xdr.responseText", ie_xdr.responseText);
+					var response_text = ie_xdr.responseText;
+					var res_json = JSON.parse(response_text);
+					if(res_json && res_json.creativeId){
+						var adid = res_json.creativeId;
+						if ((is_ad_exist(adid))){
+							pre_adid_array.push(adid);
+							if(count < tag_num){
+								reqest_ad_xdr(count+1);
+							}
+							generate_ad(res_json.adContent.html, count);
+							tracking(res_json.trackingData.impressionUrl);
+						}
+					}
+				} catch(e){
+					console.log("error", e);
+				}
+			};
+			console.log("send");
+
+			ie_xdr.send();
+
+		};
+
+		reqest_ad_xdr(0);
+		
+	//	reqest_ad(0);
 	})();
 </script>
